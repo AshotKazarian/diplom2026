@@ -364,10 +364,10 @@ def generate_test_data():
     print("ГЕНЕРАЦИЯ ТЕСТОВЫХ ДАННЫХ ДЛЯ СИСТЕМЫ ВКР")
     print("=" * 70 + "\n")
 
-    # Создаём группу для заведующих кафедры
-    group, created = Group.objects.get_or_create(name="Заведующий кафедры")
+    # Создаём группу для заведующих кафедрами
+    group, created = Group.objects.get_or_create(name="Заведующий кафедрой")
     if created:
-        print("✓ Создана группа 'Заведующий кафедры'")
+        print("✓ Создана группа 'Заведующий кафедрой'")
 
     # Создаём факультеты
     faculties = {}
@@ -618,11 +618,11 @@ def generate_test_data():
         dept_professors = [p for p in professors if p.department == dept]
         if dept_professors:
             head = dept_professors[0]
-            if not head.user.groups.filter(name="Заведующий кафедры").exists():
+            if not head.user.groups.filter(name="Заведующий кафедрой").exists():
                 head.user.groups.add(group)
                 head.user.is_staff = True
                 head.user.save()
-                print(f"✓ {head.full_name} назначен заведующим кафедры {dept.name}")
+                print(f"✓ {head.full_name} назначен заведующим кафедрой {dept.name}")
 
     print("\n" + "=" * 70)
     print("ГЕНЕРАЦИЯ ЗАВЕРШЕНА")
